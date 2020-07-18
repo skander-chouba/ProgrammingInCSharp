@@ -21,7 +21,28 @@ namespace RandomAverages
         {
             if(long.TryParse(NumberOfValuesTextBox.Text, out long noOfValues))
             {
-                ResultValueLabel.Text = ComputeAverages(noOfValues).ToString();
+                #region Listing 1-29
+                //ResultValueLabel.Text = ComputeAverages(noOfValues).ToString();
+                #endregion
+
+                #region Listing 1-30
+                //This Process generates an error.
+                //Task.Run(() =>
+                //{
+                //    ResultValueLabel.Text = ComputeAverages(noOfValues).ToString();
+                //});
+                #endregion
+
+                #region Listing 1-31
+                //In order for this to work you have to make a WPF application
+
+                //Task.Run(() =>
+                //{
+                //    double result = ComputeAverages(noOfValues);
+                    
+                //    //ResultValueLabel.Dispat
+                //});
+                #endregion
             }
             else
             {
