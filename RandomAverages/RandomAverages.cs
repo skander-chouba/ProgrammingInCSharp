@@ -17,7 +17,7 @@ namespace RandomAverages
         {
             InitializeComponent();
         }
-        private void StartButton_Click(object sender, EventArgs e)
+        private async void StartButton_Click(object sender, EventArgs e)
         {
             if(long.TryParse(NumberOfValuesTextBox.Text, out long noOfValues))
             {
@@ -32,16 +32,22 @@ namespace RandomAverages
                 //    ResultValueLabel.Text = ComputeAverages(noOfValues).ToString();
                 //});
                 #endregion
-
+                
                 #region Listing 1-31
                 //In order for this to work you have to make a WPF application
 
                 //Task.Run(() =>
                 //{
                 //    double result = ComputeAverages(noOfValues);
-                    
+
                 //    //ResultValueLabel.Dispat
                 //});
+                #endregion
+
+                #region Listing 1-32
+                ResultValueLabel.Text = "Calculating...";
+                double result = await ComputeAveragesAsync(noOfValues);
+                ResultValueLabel.Text = result.ToString();
                 #endregion
             }
             else
@@ -61,6 +67,24 @@ namespace RandomAverages
                 total += rand.NextDouble();
             }
             return total / noOfValues;
+        }
+
+        /// <summary>
+        /// The async and await keywords allow programmers to write code elements that execute asynchronously.
+        /// The async keyword is used to flag a method as “asynchronous.”
+        /// An asynchronous method must contain one or more actions that are “awaited.”
+        /// 
+        /// An action can be awaited if it returns either a Task (I just want do something asynchronously)
+        /// or a Task<t> (I want to do something asynchronously that returns a result of a particular type).
+        /// </summary>
+        /// <param name="noOfValues"></param>
+        /// <returns></returns>
+        private Task<double> ComputeAveragesAsync(long noOfValues)
+        {
+            return Task.Run(() =>
+            {
+                return ComputeAverages(noOfValues);
+            });
         }
 
         private void NumberOfValuesTextBox_MouseClick(object sender, MouseEventArgs e)
