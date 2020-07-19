@@ -110,7 +110,7 @@
             this.Controls.Add(this.NumberOfValuesLabel);
             this.Controls.Add(this.TitleLabel);
             this.Name = "RandomAverages";
-            this.Text = "Form1";
+            this.Text = "Random Averages";
             this.ResumeLayout(false);
             this.PerformLayout();
 
